@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pierre &amp; Amandine — Notre mariage</title>
+<meta name="description" content="Tout ce qu'il faut savoir sur notre mariage : date, programme de la journée et lieux.">
+
+<!-- Polices -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============================================= -->
+<!--  NAVIGATION                                    -->
+<!-- ============================================= -->
+<header class="site-header">
+  <nav class="nav" aria-label="Navigation principale">
+    <a class="nav__brand" href="#accueil">P&nbsp;&amp;&nbsp;A</a>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav__menu" id="navMenu">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#programme">Programme</a></li>
+      <li><a href="#lieux">Lieux</a></li>
+      <li><a href="#infos">Infos pratiques</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============================================= -->
+  <!--  ACCUEIL / HERO                                -->
+  <!-- ============================================= -->
+  <section id="accueil" class="hero">
+    <div class="hero__frame">
+      <p class="hero__eyebrow">Nous nous marions</p>
+      <h1 class="hero__names">Pierre <span class="hero__amp">&amp;</span> Amandine</h1>
+
+      <!--
+        MODIFIER ICI : la date du mariage.
+        Format attendu par le compte à rebours : AAAA-MM-JJTHH:MM:SS
+      -->
+      <p class="hero__date" id="weddingDate" data-wedding-date="2027-05-22T14:00:00">
+        22 Mai 2027
+      </p>
+
+      <div class="hero__photo">
+        <!-- MODIFIER ICI : remplacer par le chemin de votre photo -->
+        <img src="images/photo-couple.jpg" alt="Photo du couple" onerror="this.parentElement.classList.add('hero__photo--empty')">
+        <div class="hero__photo-placeholder">
+          Remplacez <code>images/photo-couple.jpg</code><br>par votre photo
+        </div>
+      </div>
+    </div>
+
+    <!-- Compte à rebours -->
+    <div class="countdown" id="countdown" aria-live="polite">
+      <div class="countdown__item">
+        <span class="countdown__value" id="cd-days">00</span>
+        <span class="countdown__label">jours</span>
+      </div>
+      <div class="countdown__item">
+        <span class="countdown__value" id="cd-hours">00</span>
+        <span class="countdown__label">heures</span>
+      </div>
+      <div class="countdown__item">
+        <span class="countdown__value" id="cd-minutes">00</span>
+        <span class="countdown__label">minutes</span>
+      </div>
+      <div class="countdown__item">
+        <span class="countdown__value" id="cd-seconds">00</span>
+        <span class="countdown__label">secondes</span>
+      </div>
+    </div>
+
+    <a href="#programme" class="hero__scroll" aria-label="Défiler vers le programme">Le programme ↓</a>
+  </section>
+
+  <!-- ============================================= -->
+  <!--  PROGRAMME / TIMELINE                          -->
+  <!-- ============================================= -->
+  <section id="programme" class="section programme">
+    <p class="section__eyebrow">La journée</p>
+    <h2 class="section__title">Programme</h2>
+
+    <!--
+      MODIFIER ICI : ajoutez / supprimez des <li class="ticket"> pour
+      chaque étape de la journée (cérémonie, vin d'honneur, dîner, soirée...)
+    -->
+    <ol class="ticket-list">
+      <li class="ticket">
+        <div class="ticket__time">14:00</div>
+        <div class="ticket__stub" aria-hidden="true"></div>
+        <div class="ticket__body">
+          <h3 class="ticket__title">Mariage Mairie</h3>
+          <p class="ticket__place">Mairie de Gières</p>
+          <p class="ticket__desc">TBD</p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="ticket__time">16:00</div>
+        <div class="ticket__stub" aria-hidden="true"></div>
+        <div class="ticket__body">
+          <h3 class="ticket__title">Cérémonie laïque</h3>
+          <p class="ticket__place">Château du Montalieu, Saint Vincent de mercuze</p>
+          <p class="ticket__desc">Rafraîchissement en amont être la avant 16H</p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="ticket__time">17:00</div>
+        <div class="ticket__stub" aria-hidden="true"></div>
+        <div class="ticket__body">
+          <h3 class="ticket__title">Photo</h3>
+          <p class="ticket__place">Château du Montalieu, Saint Vincent de mercuze</p>
+          <p class="ticket__desc">A la suite de la cérémonie, photo de groupe avec les différentes famille</p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="ticket__time">18:00</div>
+        <div class="ticket__stub" aria-hidden="true"></div>
+        <div class="ticket__body">
+          <h3 class="ticket__title">Vin d'honnneur</h3>
+          <p class="ticket__place">Château du Montalieu, Saint Vincent de mercuze</p>
+          <p class="ticket__desc">Petit four, cocktail</p>
+        </div>
+      </li>
+      <li class="ticket">
+        <div class="ticket__time">20:00</div>
+        <div class="ticket__stub" aria-hidden="true"></div>
+        <div class="ticket__body">
+          <h3 class="ticket__title">Repas</h3>
+          <p class="ticket__place">Château du Montalieu, Saint Vincent de mercuze</p>
+          <p class="ticket__desc">Repas assis, servi à l'assiette</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============================================= -->
+  <!--  LIEUX / CARTES                                -->
+  <!-- ============================================= -->
+  <section id="lieux" class="section lieux">
+    <p class="section__eyebrow">S'y rendre</p>
+    <h2 class="section__title">Les lieux</h2>
+
+    <!--
+      MODIFIER ICI : un <article class="lieu"> par lieu.
+      Pour chaque carte, remplacez l'URL du <iframe> :
+      1. Allez sur https://www.google.com/maps
+      2. Recherchez l'adresse
+      3. Cliquez sur "Partager" -> "Intégrer une carte" -> copiez l'attribut src de l'iframe fourni
+      (aucune clé API n'est nécessaire pour cette méthode)
+    -->
+    <div class="lieu-grid">
+      <article class="lieu">
+        <h3 class="lieu__title">Mariage mairie</h3>
+        <p class="lieu__address">15 Rue Victor Hugo, 38610 Gières</p>
+        <div class="lieu__map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2812.0567042534644!2d5.791148200000002!3d45.18004930000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478af56341f38ebf%3A0x95aca7cbd4d0b30b!2sMairie!5e0!3m2!1sfr!2sfr!4v1786347817911!5m2!1sfr!2sfr"
+            title="Carte : lieu de la cérémonie"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <a class="lieu__link" href="https://maps.google.com/?q=Li%C3%A8ge" target="_blank" rel="noopener">Ouvrir dans Google Maps ↗</a>
+      </article>
+      <article class="lieu">
+        <h3 class="lieu__title">Cérémonie laïque &amp; Vin d'honneur et Repas</h3>
+        <p class="lieu__address">44 Chem. du Château, 38660 Saint-Vincent-de-Mercuze</p>
+        <div class="lieu__map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2802.182838171098!2d5.952787076993775!3d45.38548243868643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478a53c61a17f33f%3A0x5c5388f7caa22f92!2sCh%C3%A2teau%20du%20Montalieu!5e0!3m2!1sfr!2sfr!4v1786347910482!5m2!1sfr!2sfr"
+            title="Carte : lieu de la réception"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <a class="lieu__link" href="https://maps.google.com/?q=Li%C3%A8ge" target="_blank" rel="noopener">Ouvrir dans Google Maps ↗</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!--  INFOS PRATIQUES                               -->
+  <!-- ============================================= -->
+  <section id="infos" class="section infos">
+    <p class="section__eyebrow">Bon à savoir</p>
+    <h2 class="section__title">Infos pratiques</h2>
+
+    <div class="infos-grid">
+      <div class="infos__card">
+        <h3>Tenue</h3>
+        <p>Tenue de cérémonie. Pensez à des chaussures confortables : une partie de la réception est en extérieur.</p>
+      </div>
+      <div class="infos__card">
+        <h3>Cadeaux</h3>
+        <p>Votre présence est le plus beau des cadeaux. Une liste est toutefois disponible sur demande.</p>
+      </div>
+      <div class="infos__card">
+        <h3>RSVP</h3>
+        <p>Merci de confirmer votre présence avant le <strong>1er mai 2027</strong> par téléphone ou par message.</p>
+      </div>
+      <div class="infos__card">
+        <h3>Contact</h3>
+        <p>Une question ? Écrivez-nous à <a href="mailto:contact@exemple.com">contact@exemple.com</a>.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Avec joie, Pierre &amp; Amandine — 22 mai 2027</p>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

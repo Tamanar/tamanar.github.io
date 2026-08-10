@@ -1,0 +1,488 @@
+/* =================================================================
+   TOKENS
+   Modifiez ces variables pour changer les couleurs / polices
+   de tout le site en une seule fois.
+================================================================= */
+:root {
+  --paper:        #F5F0E6; /* fond ivoire */
+  --paper-soft:   #EDE6D6; /* fond ivoire légèrement plus foncé (cartes) */
+  --ink:          #24352B; /* vert forêt profond — couleur principale */
+  --ink-soft:     #3C4F3F; /* vert forêt, texte secondaire */
+  --cream:        #F5F0E6; /* texte clair sur fond foncé */
+  --gold:         #B4915A; /* accent doré */
+  --rose:         #B97B6E; /* accent secondaire, discret */
+  --line:         rgba(36, 53, 43, 0.16);
+
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body:    'Jost', sans-serif;
+
+  --container:    1080px;
+  --radius:       2px;
+}
+
+/* =================================================================
+   RESET DE BASE
+================================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* =================================================================
+   NAVIGATION
+================================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245, 240, 230, 0.9);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__brand {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.nav__menu {
+  list-style: none;
+  display: flex;
+  gap: 2.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__menu a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav__menu a:hover { color: var(--ink); border-color: var(--gold); }
+
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 34px;
+  height: 34px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav__toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--ink);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* =================================================================
+   HERO
+================================================================= */
+.hero {
+  background: var(--ink);
+  color: var(--cream);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem 2.5rem;
+  position: relative;
+}
+
+.hero__frame {
+  border: 1px solid rgba(245, 240, 230, 0.35);
+  padding: 3rem 2.5rem;
+  max-width: 640px;
+  width: 100%;
+}
+
+.hero__eyebrow {
+  margin: 0 0 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.72rem;
+  color: var(--gold);
+}
+
+.hero__names {
+  font-size: clamp(2.6rem, 8vw, 4.4rem);
+  line-height: 1.05;
+  font-weight: 500;
+}
+
+.hero__amp {
+  font-style: italic;
+  color: var(--gold);
+  padding: 0 0.15em;
+}
+
+.hero__date {
+  margin: 0.9rem 0 2rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--paper-soft);
+}
+
+.hero__photo {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--gold);
+  position: relative;
+  background: rgba(245, 240, 230, 0.06);
+}
+
+.hero__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.hero__photo-placeholder {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: rgba(245, 240, 230, 0.6);
+  padding: 1rem;
+  text-align: center;
+}
+
+.hero__photo--empty img { display: none; }
+.hero__photo--empty .hero__photo-placeholder { display: flex; }
+
+.countdown {
+  display: flex;
+  gap: clamp(1rem, 4vw, 2.6rem);
+  margin-top: 2.6rem;
+}
+
+.countdown__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 56px;
+}
+
+.countdown__value {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  color: var(--gold);
+}
+
+.countdown__label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(245, 240, 230, 0.7);
+  margin-top: 0.3rem;
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 230, 0.75);
+}
+
+/* =================================================================
+   SECTIONS COMMUNES
+================================================================= */
+.section {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 6rem 1.5rem;
+}
+
+.section__eyebrow {
+  margin: 0 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.72rem;
+  color: var(--rose);
+  text-align: center;
+}
+
+.section__title {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  margin-bottom: 3.5rem;
+}
+
+/* =================================================================
+   PROGRAMME — style "billet / itinéraire"
+================================================================= */
+.ticket-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.ticket {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: stretch;
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.ticket__time {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  padding: 1.4rem 1.3rem;
+  min-width: 88px;
+  justify-content: center;
+}
+
+/* la "découpe" en pointillés façon souche de billet */
+.ticket__stub {
+  width: 0;
+  border-left: 1.5px dashed rgba(36, 53, 43, 0.3);
+  position: relative;
+}
+
+.ticket__stub::before,
+.ticket__stub::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background: var(--paper);
+  border-radius: 50%;
+}
+.ticket__stub::before { top: -8px; }
+.ticket__stub::after { bottom: -8px; }
+
+.ticket__body {
+  padding: 1.4rem 1.6rem;
+}
+
+.ticket__title {
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
+}
+
+.ticket__place {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+
+.ticket__desc {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+/* =================================================================
+   LIEUX / CARTES
+================================================================= */
+.lieu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
+}
+
+.lieu__title {
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+}
+
+.lieu__address {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.lieu__map {
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.lieu__map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.lieu__link {
+  display: inline-block;
+  margin-top: 0.8rem;
+  font-size: 0.82rem;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--gold);
+}
+
+/* =================================================================
+   INFOS PRATIQUES
+================================================================= */
+.infos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.6rem;
+}
+
+.infos__card {
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.4rem;
+}
+
+.infos__card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+.infos__card p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+.infos__card a { color: var(--ink); border-bottom: 1px solid var(--gold); text-decoration: none; }
+
+/* =================================================================
+   FOOTER
+================================================================= */
+.site-footer {
+  text-align: center;
+  padding: 2.4rem 1.5rem 3rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+}
+
+/* =================================================================
+   RESPONSIVE — TABLETTE
+================================================================= */
+@media (max-width: 900px) {
+  .lieu-grid { grid-template-columns: 1fr; }
+  .infos-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* =================================================================
+   RESPONSIVE — MOBILE
+================================================================= */
+@media (max-width: 640px) {
+  .nav__toggle { display: flex; }
+
+  .nav__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav__menu.is-open { max-height: 260px; }
+
+  .nav__menu li { border-top: 1px solid var(--line); }
+
+  .nav__menu a {
+    display: block;
+    padding: 1rem 1.5rem;
+  }
+
+  .hero__frame { padding: 2.2rem 1.4rem; }
+
+  .countdown { gap: 1rem; }
+  .countdown__item { min-width: 48px; }
+
+  .section { padding: 4rem 1.2rem; }
+
+  .ticket {
+    grid-template-columns: auto auto 1fr;
+  }
+  .ticket__time { min-width: 64px; padding: 1.1rem 0.8rem; font-size: 1.2rem; }
+  .ticket__body { padding: 1.1rem 1.2rem; }
+
+  .infos-grid { grid-template-columns: 1fr; }
+}
