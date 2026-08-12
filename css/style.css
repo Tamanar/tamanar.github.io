@@ -393,6 +393,72 @@ h1, h2, h3 {
 }
 
 /* =================================================================
+   HÉBERGEMENT — tableau responsive
+================================================================= */
+.hebergement__intro {
+  max-width: 560px;
+  margin: -2.4rem auto 3rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.table-wrap {
+  overflow-x: auto; /* sécurité sur très petits écrans */
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.lodging-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--paper-soft);
+  font-size: 0.9rem;
+}
+
+.lodging-table thead th {
+  text-align: left;
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  color: var(--cream);
+  background: var(--ink);
+  padding: 0.9rem 1.1rem;
+}
+
+.lodging-table tbody td {
+  padding: 0.9rem 1.1rem;
+  border-top: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.lodging-table tbody tr:hover { background: var(--paper); }
+
+.lodging-table td[data-label="Téléphone"] a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+  white-space: nowrap;
+}
+
+/* étiquette de type de logement */
+.tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(36, 53, 43, 0.1);
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.tag--hotel   { background: rgba(180, 145, 90, 0.18); color: #7A5F32; }
+.tag--studio  { background: rgba(185, 123, 110, 0.16); color: #8C4E42; }
+.tag--chambre { background: rgba(70, 110, 150, 0.16); color: #375974; }
+.tag--gite    { background: rgba(107, 143, 74, 0.16); color: #4F6B34; }
+/* =================================================================
    INFOS PRATIQUES
 ================================================================= */
 .infos-grid {
@@ -485,4 +551,44 @@ h1, h2, h3 {
   .ticket__body { padding: 1.1rem 1.2rem; }
 
   .infos-grid { grid-template-columns: 1fr; }
+
+  /* Le tableau de logements devient une pile de fiches */
+  .lodging-table thead { display: none; }
+
+  .lodging-table, .lodging-table tbody, .lodging-table tr, .lodging-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .lodging-table tr {
+    padding: 1rem 1.1rem 1.1rem;
+    border-top: 4px solid var(--paper);
+  }
+  .lodging-table tr:first-child { border-top: none; }
+
+  .lodging-table td {
+    border-top: none;
+    padding: 0.3rem 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    text-align: right;
+  }
+
+  .lodging-table td[data-label="Nom"] {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--ink);
+    padding-bottom: 0.5rem;
+  }
+  .lodging-table td[data-label="Nom"]::before { content: none; }
+
+  .lodging-table td::before {
+    content: attr(data-label);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.68rem;
+    color: var(--ink-soft);
+    text-align: left;
+  }
 }
