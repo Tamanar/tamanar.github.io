@@ -416,6 +416,13 @@ h1, h2, h3 {
   font-size: 0.9rem;
 }
 
+/* Au-delà de 640px (mode tableau), on impose une largeur minimale :
+   avec 7 colonnes, mieux vaut un défilement horizontal net qu'un texte
+   écrasé et illisible dans des colonnes trop étroites. */
+@media (min-width: 641px) {
+  .lodging-table { min-width: 840px; }
+}
+
 .lodging-table thead th {
   text-align: left;
   font-family: var(--font-body);
@@ -426,6 +433,7 @@ h1, h2, h3 {
   color: var(--cream);
   background: var(--ink);
   padding: 0.9rem 1.1rem;
+  white-space: nowrap;
 }
 
 .lodging-table tbody td {
@@ -458,6 +466,80 @@ h1, h2, h3 {
 .tag--studio  { background: rgba(185, 123, 110, 0.16); color: #8C4E42; }
 .tag--chambre { background: rgba(70, 110, 150, 0.16); color: #375974; }
 .tag--gite    { background: rgba(107, 143, 74, 0.16); color: #4F6B34; }
+
+/* -----------------------------------------------------------------
+   Bloc "Prix" : un seul tarif s'affiche tel quel ; plusieurs tarifs
+   (ou un code promo) se replient derrière un bouton "à partir de...".
+   Le HTML ne contient que les tarifs bruts (data-price) : le montant
+   le plus bas et le bouton sont générés automatiquement par script.js.
+----------------------------------------------------------------- */
+.price__single {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.price__toggle {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.price__toggle strong { color: var(--gold); font-weight: 600; }
+
+.price__chevron {
+  font-size: 0.6rem;
+  color: var(--ink-soft);
+  transition: transform 0.2s ease;
+}
+.price__toggle[aria-expanded="true"] .price__chevron { transform: rotate(180deg); }
+
+.price__details {
+  margin-top: 0.6rem;
+  padding: 0.7rem 0.8rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  min-width: 180px;
+}
+.price__details[hidden] { display: none; }
+
+.price__code {
+  margin: 0 0 0.45rem;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--rose);
+}
+.price__code strong {
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.price__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.price__list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--ink-soft);
+}
+.price__list strong { color: var(--ink); font-weight: 600; }
+
 /* =================================================================
    INFOS PRATIQUES
 ================================================================= */
@@ -582,6 +664,26 @@ h1, h2, h3 {
     padding-bottom: 0.5rem;
   }
   .lodging-table td[data-label="Nom"]::before { content: none; }
+
+  /* Le prix a besoin de sa propre ligne (bouton + détail déplié),
+     pas du schéma "étiquette à gauche / valeur à droite" des autres champs. */
+  .lodging-table td[data-label="Prix"] {
+    display: block;
+    text-align: left;
+    padding-top: 0.7rem;
+  }
+  .lodging-table td[data-label="Prix"]::before {
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .lodging-table td[data-label="Prix"] .price__toggle {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .lodging-table td[data-label="Prix"] .price__details {
+    width: 100%;
+    box-sizing: border-box;
+  }
 
   .lodging-table td::before {
     content: attr(data-label);
